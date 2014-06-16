@@ -1,16 +1,19 @@
 <?php
 session_start();
 include('../connect.php');
-$a = $_POST['invoice'];
-$b = $_POST['product'];
-$c = $_POST['qty'];
-$w = $_POST['pt'];
-$discount = $_POST['discount'];
+$v_invoice = $_POST['invoice'];
+$v_product = $_POST['product'];
+$v_quant = $_POST['qty']; //c
+$v_productid = $_POST['pt'];
+$v_discount = $_POST['discount'];
+$v_tax = $_POST['salestax'];
+$v_subtotal = $_POST['totalsub'];
+
 $result = $db->prepare("SELECT * FROM products WHERE product_code= :userid");
-$result->bindParam(':userid', $b);
+$result->bindParam(':userid', $v_product);
 $result->execute();
 for($i=0; $row = $result->fetch(); $i++){
-$asasa=$row['price'];
+$v_price=$row['price'];
 $name=$row['product_name'];
 }
 
@@ -19,14 +22,12 @@ $sql = "UPDATE products
         SET qty=qty-?
 		WHERE product_code=?";
 $q = $db->prepare($sql);
-$q->execute(array($c,$b));
-$fffffff=$asasa-$discount;
-$d=$fffffff*$c;
+$q->execute(array($v_quant,$v_product));
+$v_subamount=(($v_price-$v_discount)*$v_quant);
+$v_subtotal=($v_subamount*$v_quant)-$v_tax;
 // query
-$sql = "INSERT INTO sales_order (invoice,product,qty,amount,name,price,discount) VALUES (:a,:b,:c,:d,:e,:f,:g)";
+$sql = "INSERT INTO sales_order (invoice,product,qty,amount,name,price,discount,salestax,totalmount) VALUES (:a,:b,:c,:d,:e,:f,:g,:h,:i,:j)";
 $q = $db->prepare($sql);
-$q->execute(array(':a'=>$a,':b'=>$b,':c'=>$c,':d'=>$d,':e'=>$name,':f'=>$asasa,':g'=>$discount));
-header("location: sales.php?id=$w&invoice=$a");
-
-
+$q->execute(array(':a'=>$v_invoice,':b'=>$v_product,':c'=>$v_quant,':d'=>$v_subtotal,':e'=>$name,':f'=>$v_price,':g'=>$v_discount, ':h'=>$v_discount, ':i'=>$v_tax, ':j'=>$v_subtotal));
+header("location: sales.php?id=$v_productid&invoice=$v_invoice");
 ?>

@@ -46,6 +46,7 @@ input {
     -moz-box-shadow:0 1px 2px #ddd;
     -webkit-box-shadow:0 1px 2px #ddd;
 }
+
 #btn {
 	background: grey;
 	border: 1px solid #999;
@@ -75,6 +76,21 @@ input {
 	text-decoration: none;
 	color: #000000;
 }
+#dddd {
+	border: 1px solid #999;
+	background: #EEEEEE;
+	padding: 5px 10px;
+	box-shadow:0 1px 2px #ddd;
+    -moz-box-shadow:0 1px 2px #ddd;
+    -webkit-box-shadow:0 1px 2px #ddd;
+	width: 8%;
+	display: inline-block;
+	float:left;
+	text-align: center;
+	text-decoration: none;
+	color: #000000;
+}
+
 #cccc {
 	border: 1px solid #999;
 	background: #EEEEEE;
@@ -114,13 +130,19 @@ input {
 	border-top: 0 none;
 	font-size: 12px;
 }
-
 #resultTable tbody tr td{
     background-color: #FFFFFF;
 	font-size: 11px;
     text-align: left;
 	padding: 10px 14px;
 	border-top: 1px solid #999999;
+}
+#resultTable tfoot tr td{
+    background-color: #EEEEEE;
+	font-size: 18px; 
+    text-align: right;
+	padding: 5px 14px;
+	border-top: 0px solid #999999;
 }
 #mainmain {
 	margin: 50px auto;

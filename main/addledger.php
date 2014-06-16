@@ -21,9 +21,9 @@ $finalcode='IN-'.createRandomPassword();
 ?>
 <link href="../style.css" media="screen" rel="stylesheet" type="text/css" />
 <form action="saveledger.php" method="post">
-<input type="hidden" name="name" value="<?php echo $_GET['invoice']; ?>" />
-<input type="hidden" name="invoice" value="<?php echo $finalcode; ?>" />
-<input type="hidden" name="tot" value="<?php echo $_GET['amount']; ?>" />
+<input type="visible" name="name" value="<?php echo $_GET['invoice']; ?>" />
+<input type="visible" name="invoice" value="<?php echo $finalcode; ?>" />
+<input type="visible" name="tot" value="<?php echo $_GET['amount']; ?>" />
 <div id="ac">
 <span>Amount : </span><input type="text" name="amount" /><br>
 <span>Remarks : </span><input type="text" name="remarks" /><br>
